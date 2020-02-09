@@ -1,0 +1,53 @@
+
+class TaskRunner {
+    private queue;
+    private maxOut: number;
+    private currentOut: number;
+
+    constructor(maxOut) {
+        this.queue = []
+        this.currentOut = 0;
+        this.maxOut = maxOut;
+    }
+
+    // Task: function(cb) => void
+    // cb: (...) => void
+    exec(task, cb) {
+        this.queue.push([task, cb]);
+        this.ackshuallyExecuteTheThings();
+    }
+
+    private ackshuallyExecuteTheThings() {
+        if (this.currentOut < this.maxOut) {
+            this.currentOut++;
+
+        }
+    }
+}
+
+
+const a = new TaskRunner(3);
+
+function timeout(waitTime) {
+    return function _timeout(cb) {
+        setTimeout(() => {
+            cb(Math.random());
+        }, waitTime);
+    }
+}
+
+a.exec(timeout(5000), () => {
+    console.log("1 done");
+});
+
+a.exec(timeout(3000), () => {
+    console.log("2 done");
+});
+
+a.exec(timeout(2000), () => {
+    console.log("3 done");
+});
+
+a.exec(timeout(1000), () => {
+    console.log("4 done");
+});
