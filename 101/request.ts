@@ -1,3 +1,7 @@
+/**
+ * Implement a task runner where, at most, 3 tasks can run at one time.  Look
+ * at the example below for better understanding.
+ */
 
 class TaskRunner {
     private queue;
@@ -61,6 +65,7 @@ function timeout(waitTime) {
     }
 }
 
+// output, if done correctly, should be 3, 2, 4, 1
 a.exec(timeout(5000), () => {
     console.log("1 done");
 });
